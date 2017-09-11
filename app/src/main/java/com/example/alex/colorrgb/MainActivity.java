@@ -1,9 +1,8 @@
 package com.example.alex.colorrgb;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -19,21 +18,19 @@ public class MainActivity extends AppCompatActivity {
     private String color_red = "00";
     private String color_green = "00";
     private String color_blue = "00";
+    private SeekBar bar_red;
+    private SeekBar bar_green;
+    private SeekBar bar_blue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        image = (TextView) findViewById(R.id.imageView);
-        textView_red = (TextView) findViewById(R.id.textView_red);
-        textView_green = (TextView) findViewById(R.id.textView_green);
-        textView_blue = (TextView) findViewById(R.id.textView_blue);
-        textView_red_dec = (TextView) findViewById(R.id.textView_red_dec);
-        textView_green_dec = (TextView) findViewById(R.id.textView_green_dec);
-        textView_blue_dec = (TextView) findViewById(R.id.textView_blue_dec);
-        SeekBar bar_red = (SeekBar) findViewById(R.id.seekBar_red);
-        SeekBar bar2 = (SeekBar) findViewById(R.id.seekBar_green);
-        SeekBar bar3 = (SeekBar) findViewById(R.id.seekBar_blue);
+        add_view();
+        change();
+    }
+
+    private void change() {
         bar_red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -58,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        bar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        bar_green.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 String hex = String.valueOf(Integer.toString(progress, 16));
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        bar3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        bar_blue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 String hex = String.valueOf(Integer.toString(progress, 16));
@@ -104,6 +101,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void add_view() {
+        image = (TextView) findViewById(R.id.imageView);
+        textView_red = (TextView) findViewById(R.id.textView_red);
+        textView_green = (TextView) findViewById(R.id.textView_green);
+        textView_blue = (TextView) findViewById(R.id.textView_blue);
+        textView_red_dec = (TextView) findViewById(R.id.textView_red_dec);
+        textView_green_dec = (TextView) findViewById(R.id.textView_green_dec);
+        textView_blue_dec = (TextView) findViewById(R.id.textView_blue_dec);
+        bar_red = (SeekBar) findViewById(R.id.seekBar_red);
+        bar_green = (SeekBar) findViewById(R.id.seekBar_green);
+        bar_blue = (SeekBar) findViewById(R.id.seekBar_blue);
     }
 
     private String mix(String color_red, String color_green, String color_blue) {
