@@ -8,19 +8,19 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView textView_red;
-    private TextView textView_green;
-    private TextView textView_blue;
+    private TextView tv_red;
+    private TextView tv_green;
+    private TextView tv_blue;
     private TextView image;
-    private TextView textView_red_dec;
-    private TextView textView_green_dec;
-    private TextView textView_blue_dec;
+    private TextView tv_redDec;
+    private TextView tv_greenDec;
+    private TextView tv_blueDec;
     private String color_red = "00";
     private String color_green = "00";
     private String color_blue = "00";
-    private SeekBar bar_red;
-    private SeekBar bar_green;
-    private SeekBar bar_blue;
+    private SeekBar sb_red;
+    private SeekBar sb_green;
+    private SeekBar sb_blue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +31,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void change() {
-        bar_red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sb_red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 String hex = String.valueOf(Integer.toString(progress, 16));
                 if (hex.length() == 1) {
                     hex = "0" + hex;
                 }
-                textView_red.setText(hex);
-                textView_red_dec.setText(String.valueOf(progress));
+                tv_red.setText(hex);
+                tv_redDec.setText(String.valueOf(progress));
                 color_red = hex;
                 image.setBackgroundColor(Color.parseColor(mix(hex, color_green, color_blue)));
 
@@ -55,15 +55,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        bar_green.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sb_green.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 String hex = String.valueOf(Integer.toString(progress, 16));
                 if (hex.length() == 1) {
                     hex = "0" + hex;
                 }
-                textView_green.setText(hex);
-                textView_green_dec.setText(String.valueOf(progress));
+                tv_green.setText(hex);
+                tv_greenDec.setText(String.valueOf(progress));
                 color_green = hex;
                 image.setBackgroundColor(Color.parseColor(mix(color_red, hex, color_blue)));
             }
@@ -78,15 +78,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        bar_blue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sb_blue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 String hex = String.valueOf(Integer.toString(progress, 16));
                 if (hex.length() == 1) {
                     hex = "0" + hex;
                 }
-                textView_blue.setText(hex);
-                textView_blue_dec.setText(String.valueOf(progress));
+                tv_blue.setText(hex);
+                tv_blueDec.setText(String.valueOf(progress));
                 color_blue = hex;
                 image.setBackgroundColor(Color.parseColor(mix(color_red, color_green, hex)));
             }
@@ -104,20 +104,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void add_view() {
-        image = (TextView) findViewById(R.id.imageView);
-        textView_red = (TextView) findViewById(R.id.textView_red);
-        textView_green = (TextView) findViewById(R.id.textView_green);
-        textView_blue = (TextView) findViewById(R.id.textView_blue);
-        textView_red_dec = (TextView) findViewById(R.id.textView_red_dec);
-        textView_green_dec = (TextView) findViewById(R.id.textView_green_dec);
-        textView_blue_dec = (TextView) findViewById(R.id.textView_blue_dec);
-        bar_red = (SeekBar) findViewById(R.id.seekBar_red);
-        bar_green = (SeekBar) findViewById(R.id.seekBar_green);
-        bar_blue = (SeekBar) findViewById(R.id.seekBar_blue);
+        image = (TextView) findViewById(R.id.image);
+        tv_red = (TextView) findViewById(R.id.textView_red);
+        tv_green = (TextView) findViewById(R.id.textView_green);
+        tv_blue = (TextView) findViewById(R.id.textView_blue);
+        tv_redDec = (TextView) findViewById(R.id.tv_redDec);
+        tv_greenDec = (TextView) findViewById(R.id.tv_greenDec);
+        tv_blueDec = (TextView) findViewById(R.id.textView_blue_dec);
+        sb_red = (SeekBar) findViewById(R.id.seekBar_red);
+        sb_green = (SeekBar) findViewById(R.id.seekBar_green);
+        sb_blue = (SeekBar) findViewById(R.id.seekBar_blue);
     }
 
     private String mix(String color_red, String color_green, String color_blue) {
-        String mix = "#" + color_red + color_green + color_blue;
-        return mix;
+        return "#" + color_red + color_green + color_blue;
     }
 }
