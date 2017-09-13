@@ -3,10 +3,12 @@ package com.example.alex.colorrgb;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private TextView tv_red;
     private TextView tv_green;
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_redDec;
     private TextView tv_greenDec;
     private TextView tv_blueDec;
+    private String color = "#000000";
     private String color_red = "00";
     private String color_green = "00";
     private String color_blue = "00";
@@ -28,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         add_view();
         change();
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), color, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void change() {
@@ -117,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String mix(String color_red, String color_green, String color_blue) {
-        return "#" + color_red + color_green + color_blue;
+        color = "#" + color_red + color_green + color_blue;
+        return color;
     }
+
 }

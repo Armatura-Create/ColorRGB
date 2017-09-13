@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ColorRGB</string>
+    <string name="showHex">Show Color</string>
 </resources>
